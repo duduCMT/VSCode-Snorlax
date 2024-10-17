@@ -23,4 +23,30 @@ export class VSCodeCreateFile {
       OutputUtils.print(error);
     }
   }
+
+  createFilesFromSettings = async (settings: LanguageGeneratorActions, lang: Language, configurationId: string) => {    
+    if(settings && settings[configurationId]) {
+      for(var index = 0; index < settings[configurationId].length; index++) {
+        const setting = settings[configurationId][index];
+        if(!setting.file || !setting.snippet) {
+          vscode.window.showErrorMessage(`Has a error in "${lang}.${configurationId}". Files not created.`);
+          return;
+        }
+        await this.createFromSnnipet(setting.file, lang, setting.snippet);
+        vscode.window.showInformationMessage(`Files created successfully from User "settings.json"`);
+      }
+    }
+  }
+
+  createFilesFromGeneratorSettings = async (settings: GeneratorSettings[], lang: Language) => {    
+    for(var index = 0; index < settings.length; index++) {
+      const setting = settings[index];
+      if(!setting.file || !setting.snippet) {
+        vscode.window.showErrorMessage(`Internal error in the Snorlax. GeneratorSettings from "${lang} not defined correctly."`);
+        return;
+      }
+      await this.createFromSnnipet(setting.file, lang, setting.snippet);
+      vscode.window.showInformationMessage(`Default files created successfully."`);
+    }
+  }
 }

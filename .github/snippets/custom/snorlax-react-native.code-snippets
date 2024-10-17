@@ -1,0 +1,37 @@
+{
+	"exemple-create-styles": {
+		"prefix": "exemple-create-styles",
+		"scope": "typescript",
+		"body": [
+			"// My styles file."
+		]
+	},
+	"exemple-create-screen": {
+		"prefix": "exemple-create-screen",
+		"scope": "typescriptreact",
+		"body": [
+			"// My screen file."
+		]
+	},
+	"exemple-create-component": {
+		"prefix": "exemple-create-component",
+		"scope": "typescriptreact",
+		"body": [
+			"// My component file."
+		]
+	},
+	"exemple-create-component-props": {
+		"prefix": "exemple-create-component-props",
+		"scope": "typescript",
+		"body": [
+			"// My component props file."
+		]
+	},
+  "exemple-create-storybook-file": {
+		"prefix": "exemple-create-storybook-file",
+		"scope": "typescript",
+		"body": [
+			"// My storybook file."
+		]
+	}
+}

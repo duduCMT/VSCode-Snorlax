@@ -24,10 +24,6 @@
       {
         "command": "vscode-snorlax.react-native.createScreen",
         "title": "Criar Tela"
-      },
-      {
-        "command": "vscode-snorlax.react-native.test",
-        "title": "Testar"
       }
     ],
     "menus": {
@@ -52,10 +48,6 @@
         {
           "command": "vscode-snorlax.react-native.createScreen",
           "title": "Criar Tela"
-        },
-        {
-          "command": "vscode-snorlax.react-native.test",
-          "title": "Testar"
         }
       ]
     },

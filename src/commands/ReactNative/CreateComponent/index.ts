@@ -1,19 +1,29 @@
 import * as vscode from 'vscode';
-import { SnippetsUtils } from '../../../utils/SnippetsUtils';
-import { OutputUtils } from '../../../utils/OutputUtils';
-import { ReactNativeDefaultPrefix } from '../../../snippets/react-native';
 import { VSCodeCreateFile } from '../../../utils/VSCodeCreateFile';
+import { GeneratorSettings } from '../../../settings/GeneratorSettings';
+import { CreateComponentCommandValue } from './constants';
 
-
-// Função para criar um componente
 async function createComponent(uri: vscode.Uri) {
   const vsCodeFile = new VSCodeCreateFile(uri);
   const lang: Language = "react-native";
 
-  await vsCodeFile.createFromSnnipet("index.tsx", lang, ReactNativeDefaultPrefix.COMPONENT);
-  await vsCodeFile.createFromSnnipet("styles.ts", lang, ReactNativeDefaultPrefix.STYLES);
-  await vsCodeFile.createFromSnnipet("types.d.ts", lang, ReactNativeDefaultPrefix.COMPONENT_PROPS);
+  let userSettingsOk = true;
+
+  try {
+    userSettingsOk = GeneratorSettings.verifyLangSetting(lang, CreateComponentCommandValue.id);
+  } catch(error) {
+    vscode.window.showErrorMessage(error as string);
+    return;
+  }
+
+  const settings = GeneratorSettings.getLangSettings(lang);
+
+  if(userSettingsOk && settings) {
+    await vsCodeFile.createFilesFromSettings(settings, lang, CreateComponentCommandValue.id);  
+    return;
+  }
+
+  await vsCodeFile.createFilesFromGeneratorSettings(CreateComponentCommandValue.generatorDefaultSettings, lang);  
 }
 
-// Exportar a função para uso em outros comandos
 export { createComponent };
