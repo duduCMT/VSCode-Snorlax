@@ -44,6 +44,63 @@ Em `Snorlax -> React Native -> Minhas Opções` irá aparecer as opções "Criar
 Para executar o exemplo, adicione esses geradores no seu `settings.json` para testar:
 
 ```json
-
+{
+  "snorlax.generator": {
+    "root": {
+      "createTypescriptUtils": {
+        "files": [
+          {
+            "extension": "tsx",
+            "snippet": "exemple-create-typescript-utils"
+          }
+        ]
+      },
+    },
+    "react-native": {
+      "createComponent": {
+        "files": [
+          {
+            "file": "index",
+            "extension": "tsx",
+            "snippet": "exemple-create-component"
+          },
+          {
+            "file": "styles",
+            "extension": "ts",
+            "snippet": "exemple-create-styles"
+          },
+          {
+            "file": "types",
+            "extension": ".d.ts",
+            "snippet": "exemple-create-component-props"
+          },
+          {
+            "file": "index",
+            "extension": ".stories.tsx",
+            "snippet": "exemple-create-storybook-file"
+          },
+        ]
+      },
+      "createClassComponent": {
+        "requestName": true,
+        "files": [
+          {
+            "extension": "tsx",
+            "snippet": "exemple-create-class-component"  
+          }
+        ]
+      },
+      "createNavigationFile": {
+        "requestName": true,
+        "files": [
+          {
+            "extension": "ts",
+            "snippet": "exemple-create-navigation-file"  
+          }
+        ]
+      }
+    }
+  },
+}
 ```
 

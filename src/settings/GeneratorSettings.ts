@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { GeneratorSettings as GeneratorSettingsType } from "../types/generator"
 
 export class GeneratorSettings {
   static getAll = () => {
@@ -7,7 +8,7 @@ export class GeneratorSettings {
 
   static getLangSettings = (language: Language) => {
     const config = GeneratorSettings.getAll();
-    const langActions = config.get<LanguageGeneratorActions>(language);
+    const langActions = config.get<GeneratorSettingsType>(language);
     return langActions;
   }
 
@@ -16,18 +17,20 @@ export class GeneratorSettings {
 
     if(!settings) return false;
 
-    if(settings[settingId]) {
-      for(var index = 0; index < settings[settingId].length; index++) {
-        const setting = settings[settingId][index];
-        if(!setting.file) {
-          throw new Error(`"${lang}.${settingId}[${index}].file" not set.`);
-        }
-        if(!setting.snippet) {
-          throw new Error(`"${lang}.${settingId}[${index}].snippet" not set.`);
-        }
+    if(!settings[settingId]) throw new Error(`"${lang}.${settingId}" not set.`); 
+
+    if(!settings[settingId].files) throw new Error(`"${lang}.${settingId}.files" not set.`); 
+
+    for(var index = 0; index < settings[settingId].files.length; index++) {
+      const file = settings[settingId].files[index];
+      if(file.file && !file.extension) {
+        throw new Error(`"${lang}.${settingId}.files[${index}].extension" not set.`);
+      }
+      if(!file.snippet) {
+        throw new Error(`"${lang}.${settingId}.files[${index}].snippet" not set.`);
       }
     }
-
+  
     return true;
   } 
 }

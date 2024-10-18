@@ -1,8 +1,14 @@
-type GeneratorSettings = {
-  file?: string;
-  snippet?: string;
+export type GeneratorSettings = {
+  [key: string]: GeneratorLanguageSetting;
 };
 
-type LanguageGeneratorActions = {
-  [key: string]: GeneratorSettings[];
+type GeneratorLanguageSetting = {
+  requestName?: boolean;
+  files?: FileOptions[];
 };
+
+type FileOptions = {
+  file?: string;
+  extension?: string;
+  snippet?: string;
+}

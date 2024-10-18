@@ -3,7 +3,6 @@ type OptionSettings = {
 };
 
 type OptionLanguageSetting = {
-  requestFileName?: boolean;
   options?: Option[];
 };
 

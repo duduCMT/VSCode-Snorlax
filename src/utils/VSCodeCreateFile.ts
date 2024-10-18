@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { SnippetsUtils } from './SnippetsUtils';
 import { OutputUtils } from './OutputUtils';
+import { FileOptions, GeneratorLanguageSetting, GeneratorSettings } from '../types/generator';
 
 export class VSCodeCreateFile {
   constructor(private uri: vscode.Uri) {}
@@ -24,28 +25,29 @@ export class VSCodeCreateFile {
     }
   }
 
-  createFilesFromSettings = async (settings: LanguageGeneratorActions, lang: Language, configurationId: string) => {    
-    if(settings && settings[configurationId]) {
-      for(var index = 0; index < settings[configurationId].length; index++) {
-        const setting = settings[configurationId][index];
-        if(!setting.file || !setting.snippet) {
+  createFilesFromSettings = async (settings: GeneratorSettings, lang: Language, configurationId: string, fileName?: string) => {    
+    if(settings && settings[configurationId] && settings[configurationId].files) {
+      for(var index = 0; index < settings[configurationId].files.length; index++) {
+        const setting = settings[configurationId].files[index];
+        setting.file = setting.file || fileName;
+        if(!setting.snippet || !setting.extension) {
           vscode.window.showErrorMessage(`Has a error in "${lang}.${configurationId}". Files not created.`);
           return;
         }
-        await this.createFromSnnipet(setting.file, lang, setting.snippet);
+        await this.createFromSnnipet(`${setting.file}.${setting.extension}`, lang, setting.snippet);
         vscode.window.showInformationMessage(`Files created successfully from User "settings.json"`);
       }
     }
   }
 
-  createFilesFromGeneratorSettings = async (settings: GeneratorSettings[], lang: Language) => {    
+  createFilesFromGeneratorSettings = async (settings: FileOptions[], lang: Language) => {    
     for(var index = 0; index < settings.length; index++) {
       const setting = settings[index];
-      if(!setting.file || !setting.snippet) {
+      if(!setting.snippet || !setting.extension) {
         vscode.window.showErrorMessage(`Internal error in the Snorlax. GeneratorSettings from "${lang} not defined correctly."`);
         return;
       }
-      await this.createFromSnnipet(setting.file, lang, setting.snippet);
+      await this.createFromSnnipet(`${setting.file}.${setting.extension}`, lang, setting.snippet);
       vscode.window.showInformationMessage(`Default files created successfully."`);
     }
   }

@@ -58,25 +58,31 @@ Adicione a seguinte configuração no arquivo `settings.json` abaixo para criar 
 {
   "snorlax.generator": {
     "react-native": {
-      "createComponent": [
-        {
-          "file": "index.tsx",
-          "snippet": "exemple-create-component",
-        },
-        {
-          "file": "styles.ts",
-          "snippet": "exemple-create-styles",
-        },
-        {
-          "file": "types.d.ts",
-          "snippet": "exemple-create-component-props",
-        },
-        {
-          "file": "index.stories.tsx",
-          "snippet": "exemple-create-storybook-file",
-        },
-      ]    
-    }
+      "createComponent": {
+        "files": [
+          {
+            "file": "index",
+            "extension": "tsx",
+            "snippet": "exemple-create-component"
+          },
+          {
+            "file": "styles",
+            "extension": "ts",
+            "snippet": "exemple-create-styles"
+          },
+          {
+            "file": "types",
+            "extension": ".d.ts",
+            "snippet": "exemple-create-component-props"
+          },
+          {
+            "file": "index",
+            "extension": ".stories.tsx",
+            "snippet": "exemple-create-storybook-file"
+          },
+        ]
+      },
+		}
   }
 }
 ```
