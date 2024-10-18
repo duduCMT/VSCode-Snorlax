@@ -1,6 +1,6 @@
 # Gerador de Arquivos Personalizado
 
-Caso você queira personalizar os arquivos que são gerados juntamente com seus snippets ao clicar em determinada opção do Snorlax, basta seguir essa documentação:
+Caso você queira personalizar os arquivos que são gerados juntamente com seus snippets ao clicar em determinada opção do Snorlax, basta seguir essa documentação.
 
 ### 1. Altere o arquivo de Snippet da Linguagem
 

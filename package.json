@@ -10,13 +10,23 @@
     "Other"
   ],
   "activationEvents": [
+    "onCommand:vscode-snorlax.myOptions",
     "onCommand:vscode-snorlax.react-native.createComponent",
     "onCommand:vscode-snorlax.react-native.createScreen",
-    "onCommand:vscode-snorlax.react-native.test"
+    "onCommand:vscode-snorlax.react-native.test",
+    "onCommand:vscode-snorlax.react-native.myOptions"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
+      {
+        "command": "vscode-snorlax.myOptions",
+        "title": "Minhas Opções"
+      },
+      {
+        "command": "vscode-snorlax.react-native.myOptions",
+        "title": "Minhas Opções"
+      },
       {
         "command": "vscode-snorlax.react-native.createComponent",
         "title": "Criar Componente"
@@ -36,18 +46,30 @@
       ],
       "snorlax.submenu": [
         {
+          "submenu": "snorlax.submenu.myOptions",
+          "command": "vscode-snorlax.myOptions",
+          "group": "snorlax.submenu.others"
+        },
+        {
           "submenu": "snorlax.submenu.react-native",
-          "group": "snorlax.submenu"
+          "group": "snorlax.submenu.langs"
         }
       ],
       "snorlax.submenu.react-native": [
         {
+          "command": "vscode-snorlax.react-native.myOptions",
+          "title": "Minhas Opções",
+          "group": "snorlax.group.react-native.others"
+        },
+        {
           "command": "vscode-snorlax.react-native.createComponent",
-          "title": "Criar Componente"
+          "title": "Criar Componente",
+          "group": "snorlax.group.react-native.actions"
         },
         {
           "command": "vscode-snorlax.react-native.createScreen",
-          "title": "Criar Tela"
+          "title": "Criar Tela",
+          "group": "snorlax.group.react-native.actions"
         }
       ]
     },
@@ -55,6 +77,10 @@
       {
         "id": "snorlax.submenu",
         "label": "Snorlax"
+      },
+      {
+        "id": "snorlax.submenu.myOptions",
+        "label": "Minhas Opções"
       },
       {
         "id": "snorlax.submenu.react-native",

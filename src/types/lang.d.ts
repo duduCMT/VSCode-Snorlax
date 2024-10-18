@@ -1,1 +1,1 @@
-type Language = "react-native";
+type Language = "root" | "react-native";
