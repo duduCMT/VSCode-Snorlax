@@ -1,0 +1,26 @@
+{
+	"snorlax-rn-component": {
+		"prefix": "snorlax-rn-component",
+		"scope": "typescriptreact",
+		"body": [
+			"// My snorlax-rn-component from User" 
+		],
+		"description": "Create a React Native component file"
+	},
+	"snorlax-rn-screen": {
+		"prefix": "snorlax-rn-screen",
+		"scope": "typescriptreact",
+		"body": [
+			"// My snorlax-rn-screen from User"
+		],
+		"description": "Create a React Native screen file"
+	},
+	"snorlax-rn-styles": {
+		"prefix": "snorlax-rn-styles",
+		"scope": "javascript,typescript",
+		"body": [
+			"// My snorlax-rn-styles from User"
+		],
+		"description": "Create a React Native styles sheet file"
+	}
+}
