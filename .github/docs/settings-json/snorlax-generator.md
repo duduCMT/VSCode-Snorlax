@@ -91,7 +91,7 @@ Dessa forma, ao clicar em Snorlax -> React-Native -> Criar componente, o Snorlax
 
 <div align="center" >
   <img 
-    style="max-width: 700px;"
-    src="../../assets/gifs/create-custom-files.gif" alt="Funcionaamento - Gerando arquivos personalizados" 
+    style="max-width: 700px; width: 100%;"
+    src="../../assets/gifs/create-custom-files.gif" alt="Funcionamento - Gerando arquivos personalizados" 
   />
 </div>

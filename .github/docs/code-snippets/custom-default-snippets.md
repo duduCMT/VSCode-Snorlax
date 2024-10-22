@@ -2,6 +2,9 @@
 
 Caso você queira alterar os Snippets padrão da extensão, basta criar um arquivo de snippet Global (User Snippet) ou local (Workspace) seguindo a seguinte nomeclatura de arquivo: `snorlax-[linguagem].code-snippets`. 
 
+## IMPORTANTE:
+
+- É importante mantar o contúdo dos arquivos `code-snippets` como um `json` funcional, pois usando internamente o `JSON.parse()` para leitura do conteúdo.
 
 ## Arquivos reconhecidos pelo Snorlax
 
@@ -23,6 +26,9 @@ Caso você tenha os mesmos snippets configurados em diferentes ambientes, o Snor
 2. Snippets Globais do VS Code (User)
 3. Snippets Padrões da Extensão (Snorlax)
 
-## IMPORTANTE:
-
-- É importante mantar o contúdo dos arquivos `code-snippets` como um `json` funcional, pois usando internamente o `JSON.parse()` para leitura do conteúdo.
+<div align="center" >
+  <img 
+    style="max-width: 700px; width: 100%;"
+    src="../../assets/gifs/snippets-hierarchy.gif" alt="Funcionamento - Hierarquia de Snippets" 
+  />
+</div>
