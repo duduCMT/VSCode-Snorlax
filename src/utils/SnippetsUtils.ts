@@ -5,6 +5,14 @@ import path from "path";
 import fs from "fs";
 
 export class SnippetsUtils {
+  static getLocalSnippetsFolderPath = () => {
+    const workspaceFolders = vscode.workspace.workspaceFolders;
+    if (!workspaceFolders) {
+      throw new Error("No open workspaces.");
+    }
+    return path.join(workspaceFolders[0].uri.fsPath, vscode.workspace.getConfiguration('files').get('userSnippetsFolder') || '.vscode');
+  }
+
   static getGlobalSnippetsFolderPath = () => {
     const platform = os.platform();
 
@@ -30,6 +38,20 @@ export class SnippetsUtils {
 
   static getSnippetFileName = (lang: Language) => {
     return `snorlax-${lang}.code-snippets`;
+  }
+
+  static getLocalSnippets = (lang: Language) => {
+    const snippetsFolder = SnippetsUtils.getLocalSnippetsFolderPath();
+    const fileName = SnippetsUtils.getSnippetFileName(lang);
+    const snippetFile = path.join(snippetsFolder, fileName);
+
+    if (fs.existsSync(snippetFile)) {
+      const snippetFileContent = fs.readFileSync(snippetFile, 'utf8');
+      const snippetJson = JSON.parse(snippetFileContent);
+      return snippetJson as SnippetFileContent;
+    } else {
+      throw new Error(`${fileName} not found in local snippets.`);
+    }
   }
 
   static getGlobalSnippets = (lang: Language) => {
