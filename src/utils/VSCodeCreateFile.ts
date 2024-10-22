@@ -1,7 +1,8 @@
 import * as vscode from 'vscode';
-import { SnippetsUtils } from './SnippetsUtils';
-import { OutputUtils } from './OutputUtils';
-import { FileOptions, GeneratorLanguageSetting, GeneratorSettings } from '../types/generator';
+
+import { FileOptions, GeneratorSettings } from '../types/generator';
+import { SnippetFile } from './SnippetFile';
+import { SnippetFileContentUtils } from './SnippetFileContentUtils';
 
 export class VSCodeCreateFile {
   constructor(private context: vscode.ExtensionContext, private uri: vscode.Uri) {}
@@ -29,7 +30,7 @@ export class VSCodeCreateFile {
   private createFromLocalSnippets = async (fileName: string, snippetLang: Language, prefix: string) => {
     const filePath = vscode.Uri.joinPath(this.uri, fileName);
 
-    const snippets = SnippetsUtils.getLocalSnippets(snippetLang);;
+    const snippets = SnippetFile.readLocalSnippets(snippetLang);
 
     if(!snippets) throw new Error(`No snippet files found to lang ${snippetLang} in workspace file ${filePath.toString()}`);
 
@@ -37,7 +38,7 @@ export class VSCodeCreateFile {
     await vscode.workspace.fs.writeFile(filePath, Buffer.from(''));
 
     // Get snippet body
-    const currentSnippetBody = SnippetsUtils.getBodyFromSnippet(snippets, prefix);
+    const currentSnippetBody = SnippetFileContentUtils.getBody(snippets, prefix);
     if(!currentSnippetBody) throw new Error(`No snippet body to prefix "${prefix}" in workspace file ${filePath.toString()}`);
 
     // Inset Snippet in new file
@@ -51,7 +52,7 @@ export class VSCodeCreateFile {
   private createFromGlobalSnippets = async (fileName: string, snippetLang: Language, prefix: string) => {
     const filePath = vscode.Uri.joinPath(this.uri, fileName);
 
-    const snippets = SnippetsUtils.getGlobalSnippets(snippetLang);;
+    const snippets = SnippetFile.readGlobalSnippets(snippetLang);;
 
     if(!snippets) throw new Error(`No snippet files found to lang ${snippetLang} in user global file ${filePath.toString()}`);
 
@@ -59,7 +60,7 @@ export class VSCodeCreateFile {
     await vscode.workspace.fs.writeFile(filePath, Buffer.from(''));
 
     // Get snippet body
-    const currentSnippetBody = SnippetsUtils.getBodyFromSnippet(snippets, prefix);
+    const currentSnippetBody = SnippetFileContentUtils.getBody(snippets, prefix);
     if(!currentSnippetBody) throw new Error(`No snippet body to prefix "${prefix}" in user global file ${filePath.toString()}`);
 
     // Inset Snippet in new file
@@ -73,7 +74,7 @@ export class VSCodeCreateFile {
   private createFromExtentionSnippets = async (fileName: string, snippetLang: Language, prefix: string) => {
     const filePath = vscode.Uri.joinPath(this.uri, fileName);
 
-    const snippets = SnippetsUtils.getExtentionSnippets(this.context, snippetLang);;
+    const snippets = SnippetFile.readExtentionSnippets(this.context, snippetLang);;
 
     if(!snippets) throw new Error(`No snippet files found to lang ${snippetLang} in extention file ${filePath.toString()}`);
 
@@ -81,7 +82,7 @@ export class VSCodeCreateFile {
     await vscode.workspace.fs.writeFile(filePath, Buffer.from(''));
 
     // Get snippet body
-    const currentSnippetBody = SnippetsUtils.getBodyFromSnippet(snippets, prefix);
+    const currentSnippetBody = SnippetFileContentUtils.getBody(snippets, prefix);
     if(!currentSnippetBody) throw new Error(`No snippet body to prefix "${prefix}" in extention file ${filePath.toString()}`);
 
     // Inset Snippet in new file

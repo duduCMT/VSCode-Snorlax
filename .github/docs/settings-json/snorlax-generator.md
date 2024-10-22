@@ -2,6 +2,12 @@
 
 Caso você queira personalizar os arquivos que são gerados juntamente com seus snippets ao clicar em determinada opção do Snorlax, basta seguir essa documentação.
 
+## Propriedades:
+
+
+
+## Exemplo de como alterar:
+
 ### 1. Altere o arquivo de Snippet da Linguagem
 
 Nesse exemplo, alteramos o arquivo `snorlax-react-native.code-snippets` pois iremos alterar a geração de arquivos da linguagem "React-Native". O objetivo desse exemplo é que ao clicar na opção "Criar componente", eu consiga criar arquivos personalizados. (Nesse exemplo, vamos criar um arquivo de storybook para teste).
