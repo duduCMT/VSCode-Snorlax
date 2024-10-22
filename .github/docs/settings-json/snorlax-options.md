@@ -71,12 +71,12 @@ Para executar o exemplo, adicione esses geradores no seu `settings.json` para te
           },
           {
             "file": "types",
-            "extension": ".d.ts",
+            "extension": "d.ts",
             "snippet": "exemple-create-component-props"
           },
           {
             "file": "index",
-            "extension": ".stories.tsx",
+            "extension": "stories.tsx",
             "snippet": "exemple-create-storybook-file"
           },
         ]
@@ -103,4 +103,11 @@ Para executar o exemplo, adicione esses geradores no seu `settings.json` para te
   },
 }
 ```
+
+Cada objeto em `snorlax.generator.[language].[commandId].files` pode ter os seguintes parâmetros:
+
+- `extension`: Extensão do arquivo que será gerado. 
+- `file`: Nome do arquivo que será gerado sem a extensão.
+- `snippet`: Prefixo do snippet que será preenchido no arquivo.
+
 

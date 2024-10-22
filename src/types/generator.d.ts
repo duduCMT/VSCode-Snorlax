@@ -12,3 +12,8 @@ type FileOptions = {
   extension?: string;
   snippet?: string;
 }
+
+interface Generator {
+  id: string;
+  files: FileOptions[];
+}

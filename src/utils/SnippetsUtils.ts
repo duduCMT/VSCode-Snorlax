@@ -1,7 +1,8 @@
+import * as vscode from 'vscode';
+
 import os from "os";
 import path from "path";
 import fs from "fs";
-import { OutputUtils } from "./OutputUtils";
 
 export class SnippetsUtils {
   static getGlobalSnippetsFolderPath = () => {
@@ -23,6 +24,10 @@ export class SnippetsUtils {
     }
   }
 
+  static getExtentionSnippetsFolderPath = (context: vscode.ExtensionContext) => {
+    return path.join(context.extensionPath, 'snippets');
+  }
+
   static getSnippetFileName = (lang: Language) => {
     return `snorlax-${lang}.code-snippets`;
   }
@@ -38,6 +43,20 @@ export class SnippetsUtils {
       return snippetJson as SnippetFileContent;
     } else {
       throw new Error(`${fileName} not found in global snippets.`);
+    }
+  }
+
+  static getExtentionSnippets = (context: vscode.ExtensionContext, lang: Language) => {
+    const snippetsFolder = SnippetsUtils.getExtentionSnippetsFolderPath(context);
+    const fileName = SnippetsUtils.getSnippetFileName(lang);
+    const snippetFile = path.join(snippetsFolder, fileName);
+
+    if (fs.existsSync(snippetFile)) {
+      const snippetFileContent = fs.readFileSync(snippetFile, 'utf8');
+      const snippetJson = JSON.parse(snippetFileContent);
+      return snippetJson as SnippetFileContent;
+    } else {
+      throw new Error(`${fileName} not found in extention snippets.`);
     }
   }
 

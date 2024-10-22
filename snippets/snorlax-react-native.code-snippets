@@ -1,0 +1,70 @@
+{
+	"snorlax-rn-component": {
+		"prefix": "snorlax-rn-component",
+		"scope": "typescriptreact",
+		"body": [
+			"import React from \"react\";",
+			"",
+			"import { View, Text } from \"react-native\";",
+			"",
+			"import styles from \"./styles\";",
+			"",
+			"type ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/}Props = {",
+			"}",
+			"",
+			"const ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/} = ({ navigation }: ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/}Props) => {",
+			"  return (",
+			"    <View style={styles.container}>",
+			"      <Text>Meu Componente</Text>",
+			"    </View>",
+			"  );",
+			"};",
+			"",
+			"export default ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/};",
+			""
+		],
+		"description": "Create a React Native component file"
+	},
+	"snorlax-rn-screen": {
+		"prefix": "snorlax-rn-screen",
+		"scope": "typescriptreact",
+		"body": [
+			"import React from \"react\";",
+			"import { View, Title } from \"react-native\";",
+			"",
+			"import styles from \"./styles\";",
+			"",
+			"types ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/}Props = {",
+      "}",
+			"",
+			"const ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/} = ({ navigation }: ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/}Props) => {",
+			"  return (",
+			"    <View>",
+			"      <Title>My Screen</Title>",
+			"    </View>",
+			"  );",
+			"};",
+			"",
+			"export default ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/};",
+			""
+		],
+		"description": "Create a React Native screen file"
+	},
+	"snorlax-rn-styles": {
+		"prefix": "snorlax-rn-styles",
+		"scope": "javascript,typescript",
+		"body": [
+			"import { StyleSheet } from \"react-native\";",
+			"",
+			"const styles = StyleSheet.create({",
+			"  container: {",
+			"     $1",
+			"  },",
+			"});",
+			"",
+			"export default styles;",
+			""
+		],
+		"description": "Create a React Native styles sheet file"
+	}
+}

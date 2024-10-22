@@ -1,6 +1,6 @@
 {
-  "name": "vscode-snorlax",
-  "displayName": "vscode-snorlax",
+  "name": "snorlax",
+  "displayName": "snorlax",
   "description": "extension to create folder structures more easily in vs code",
   "version": "0.0.1",
   "engines": {
@@ -10,30 +10,29 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vscode-snorlax.myOptions",
-    "onCommand:vscode-snorlax.react-native.createComponent",
-    "onCommand:vscode-snorlax.react-native.createScreen",
-    "onCommand:vscode-snorlax.react-native.test",
-    "onCommand:vscode-snorlax.react-native.myOptions"
+    "onCommand:snorlax.myOptions",
+    "onCommand:snorlax.react-native.createComponent",
+    "onCommand:snorlax.react-native.createScreen",
+    "onCommand:snorlax.react-native.myOptions"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-snorlax.myOptions",
-        "title": "Minhas Opções"
+        "command": "snorlax.myOptions",
+        "title": "My Options"
       },
       {
-        "command": "vscode-snorlax.react-native.myOptions",
-        "title": "Minhas Opções"
+        "command": "snorlax.react-native.myOptions",
+        "title": "My Options"
       },
       {
-        "command": "vscode-snorlax.react-native.createComponent",
-        "title": "Criar Componente"
+        "command": "snorlax.react-native.createComponent",
+        "title": "New Component"
       },
       {
-        "command": "vscode-snorlax.react-native.createScreen",
-        "title": "Criar Tela"
+        "command": "snorlax.react-native.createScreen",
+        "title": "New Screen"
       }
     ],
     "menus": {
@@ -47,7 +46,7 @@
       "snorlax.submenu": [
         {
           "submenu": "snorlax.submenu.myOptions",
-          "command": "vscode-snorlax.myOptions",
+          "command": "snorlax.myOptions",
           "group": "snorlax.submenu.others"
         },
         {
@@ -57,17 +56,17 @@
       ],
       "snorlax.submenu.react-native": [
         {
-          "command": "vscode-snorlax.react-native.myOptions",
+          "command": "snorlax.react-native.myOptions",
           "title": "Minhas Opções",
           "group": "snorlax.group.react-native.others"
         },
         {
-          "command": "vscode-snorlax.react-native.createComponent",
+          "command": "snorlax.react-native.createComponent",
           "title": "Criar Componente",
           "group": "snorlax.group.react-native.actions"
         },
         {
-          "command": "vscode-snorlax.react-native.createScreen",
+          "command": "snorlax.react-native.createScreen",
           "title": "Criar Tela",
           "group": "snorlax.group.react-native.actions"
         }
@@ -80,12 +79,15 @@
       },
       {
         "id": "snorlax.submenu.myOptions",
-        "label": "Minhas Opções"
+        "label": "My Options"
       },
       {
         "id": "snorlax.submenu.react-native",
         "label": "React Native"  
       }
+    ],
+    "snippets": [
+      { "path": "./snippets/snorlax-react-native.code-snippets" }
     ]
   },
   "scripts": {

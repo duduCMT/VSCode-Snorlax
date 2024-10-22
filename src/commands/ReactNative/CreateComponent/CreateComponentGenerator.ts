@@ -1,9 +1,9 @@
 import { ReactNativeDefaultPrefix } from "../../../snippets/react-native";
-import { CommandValues } from "../../../types/command";
+import { Generator } from "../../../types/command";
 
-export const CreateComponentCommandValue: CommandValues = {
+export const CreateComponentGenerator: Generator = {
   id: "createComponent",
-  generatorDefaultSettings: [
+  files: [
     {
       file: "index",
       extension: "tsx",
@@ -13,11 +13,6 @@ export const CreateComponentCommandValue: CommandValues = {
       file: "styles",
       extension: "ts",
       snippet: ReactNativeDefaultPrefix.STYLES,
-    },
-    {
-      file: "types.d.ts",
-      extension: ".d.ts",
-      snippet: ReactNativeDefaultPrefix.COMPONENT_PROPS,
-    },
+    }
   ],
 }

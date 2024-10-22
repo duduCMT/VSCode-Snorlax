@@ -1,6 +1,6 @@
 import { FileOptions } from "./generator";
 
-interface CommandValues {
+interface Generator {
   id: string;
-  generatorDefaultSettings: FileOptions[];
+  files: FileOptions[];
 }
