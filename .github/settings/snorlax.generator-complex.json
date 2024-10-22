@@ -1,0 +1,33 @@
+{
+  "snorlax.generator": {
+    "react-native": {
+      "createComponent": {
+        "files": [
+          {
+            "name": "${FOLDER_NAME}.tsx",
+            "snippet": "exemple-component"
+          },
+          {
+            "extension": "ts",
+            "name": "index",
+            "snippet": "exemple-component-index"
+          },
+          {
+            "extension": "tsx",
+            "name": "styles",
+            "snippet": "exemple-component-styles"
+          },
+          {
+            "name": "./__tests__/${FOLDER_NAME}.test.ts",
+            "snippet": "exemple-component-test"
+          },
+          {
+            "extension": "d.ts",
+            "name": "types",
+            "snippet": "exemple-component-test"
+          }
+        ]
+      }
+    }
+  }
+}

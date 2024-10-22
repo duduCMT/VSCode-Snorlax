@@ -5,12 +5,12 @@ export const CreateComponentGenerator: Generator = {
   id: "createComponent",
   files: [
     {
-      file: "index",
+      name: "index",
       extension: "tsx",
       snippet: ReactNativeDefaultPrefix.COMPONENT,
     },
     {
-      file: "styles",
+      name: "styles",
       extension: "ts",
       snippet: ReactNativeDefaultPrefix.STYLES,
     }

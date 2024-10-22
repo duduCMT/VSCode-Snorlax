@@ -8,7 +8,7 @@ type GeneratorLanguageSetting = {
 };
 
 type FileOptions = {
-  file?: string;
+  name: string;
   extension?: string;
   snippet?: string;
 }

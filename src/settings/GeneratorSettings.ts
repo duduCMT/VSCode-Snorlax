@@ -23,8 +23,8 @@ export class GeneratorSettings {
 
     for(var index = 0; index < settings[settingId].files.length; index++) {
       const file = settings[settingId].files[index];
-      if(file.file && !file.extension) {
-        throw new Error(`"${lang}.${settingId}.files[${index}].extension" not set.`);
+      if(!file.name) {
+        throw new Error(`"${lang}.${settingId}.files[${index}].name" not set.`);
       }
       if(!file.snippet) {
         throw new Error(`"${lang}.${settingId}.files[${index}].snippet" not set.`);

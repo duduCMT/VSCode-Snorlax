@@ -7,6 +7,10 @@ import { SnippetFileContentUtils } from './SnippetFileContentUtils';
 export class VSCodeCreateFile {
   constructor(private context: vscode.ExtensionContext, private uri: vscode.Uri) {}
 
+  private getFileName = (name: string, extension?: string) => {
+    return name && extension ? `${name}.${extension}` : name;
+  }
+
   createFromSnippet = async (fileName: string, snippetLang: Language, prefix: string) => {
     try {
       await this.createFromLocalSnippets(fileName, snippetLang, prefix);
@@ -93,17 +97,18 @@ export class VSCodeCreateFile {
     await fileEditor.document.save();
   }
 
-  createFilesFromSettings = async (settings: GeneratorSettings, lang: Language, configurationId: string, fileName?: string) => {    
+  createFilesFromSettings = async (settings: GeneratorSettings, lang: Language, configurationId: string) => {    
     // If user settings have files configuration to configuration id, make files
     if(settings && settings[configurationId] && settings[configurationId].files) {
       for(var index = 0; index < settings[configurationId].files.length; index++) {
-        const setting = settings[configurationId].files[index];
-        setting.file = setting.file || fileName;
-        if(!setting.snippet || !setting.extension) {
+        const fileSetting = settings[configurationId].files[index];
+        
+        if(!fileSetting.snippet || !fileSetting.name) {
           vscode.window.showErrorMessage(`Has a error in "${lang}.${configurationId}". Files not created.`);
           return;
         }
-        await this.createFromSnippet(`${setting.file}.${setting.extension}`, lang, setting.snippet);
+        const fileName = this.getFileName(fileSetting.name, fileSetting.extension);
+        await this.createFromSnippet(fileName, lang, fileSetting.snippet);
         vscode.window.showInformationMessage(`Files created successfully from User "settings.json"`);
       }
     }
@@ -111,12 +116,13 @@ export class VSCodeCreateFile {
 
   createFilesFromExtentionSettings = async (settings: FileOptions[], lang: Language) => {    
     for(var index = 0; index < settings.length; index++) {
-      const setting = settings[index];
-      if(!setting.snippet || !setting.extension) {
+      const fileSetting = settings[index];
+      if(!fileSetting.snippet || !fileSetting.name) {
         vscode.window.showErrorMessage(`Internal error in the Snorlax. GeneratorSettings from "${lang} not defined correctly."`);
         return;
       }
-      await this.createFromSnippet(`${setting.file}.${setting.extension}`, lang, setting.snippet);
+      const fileName = this.getFileName(fileSetting.name, fileSetting.extension);
+      await this.createFromSnippet(fileName, lang, fileSetting.snippet);
     }
   }
 }

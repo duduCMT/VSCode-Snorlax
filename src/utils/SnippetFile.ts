@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 
 import { SnippetFolder } from './SnippetFolder';
-import { SnippetFileContent } from './SnippetFileContentUtils';
+import { SnippetFileContent } from '../types/snippet';
 
 export class SnippetFile {
   static getFileName = (lang: Language) => {
