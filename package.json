@@ -13,7 +13,8 @@
     "onCommand:snorlax.myOptions",
     "onCommand:snorlax.react-native.createComponent",
     "onCommand:snorlax.react-native.createScreen",
-    "onCommand:snorlax.react-native.myOptions"
+    "onCommand:snorlax.react-native.myOptions",
+    "onCommand:snorlax.typescript.createUtilsFile"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -33,6 +34,10 @@
       {
         "command": "snorlax.react-native.createScreen",
         "title": "New Screen"
+      },
+      {
+        "command": "snorlax.typescript.createUtilsFile",
+        "title": "New Utils File"
       }
     ],
     "menus": {
@@ -52,23 +57,34 @@
         {
           "submenu": "snorlax.submenu.react-native",
           "group": "snorlax.submenu.langs"
+        },
+        {
+          "submenu": "snorlax.submenu.typescript",
+          "group": "snorlax.submenu.langs"
         }
       ],
       "snorlax.submenu.react-native": [
         {
           "command": "snorlax.react-native.myOptions",
-          "title": "Minhas Opções",
+          "title": "My Options",
           "group": "snorlax.group.react-native.others"
         },
         {
           "command": "snorlax.react-native.createComponent",
-          "title": "Criar Componente",
+          "title": "New Component",
           "group": "snorlax.group.react-native.actions"
         },
         {
           "command": "snorlax.react-native.createScreen",
-          "title": "Criar Tela",
+          "title": "New Screen",
           "group": "snorlax.group.react-native.actions"
+        }
+      ],
+      "snorlax.submenu.typescript": [
+        {
+          "command": "snorlax.typescript.createUtilsFile",
+          "title": "New Utils File",
+          "group": "snorlax.group.typescript.actions"
         }
       ]
     },
@@ -84,6 +100,10 @@
       {
         "id": "snorlax.submenu.react-native",
         "label": "React Native"  
+      },
+      {
+        "id": "snorlax.submenu.typescript",
+        "label": "Typescript"  
       }
     ],
     "snippets": [

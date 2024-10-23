@@ -16,7 +16,6 @@ export class VSCodeCreateFile {
       await this.createFromLocalSnippets(fileName, snippetLang, prefix);
       return;
     } catch(error) {
-      console.log(error);
       // No local snippets
     }
 
@@ -115,6 +114,18 @@ export class VSCodeCreateFile {
   }
 
   createFilesFromExtentionSettings = async (settings: FileOptions[], lang: Language) => {    
+    for(var index = 0; index < settings.length; index++) {
+      const fileSetting = settings[index];
+      if(!fileSetting.snippet || !fileSetting.name) {
+        vscode.window.showErrorMessage(`Internal error in the Snorlax. GeneratorSettings from "${lang} not defined correctly."`);
+        return;
+      }
+      const fileName = this.getFileName(fileSetting.name, fileSetting.extension);
+      await this.createFromSnippet(fileName, lang, fileSetting.snippet);
+    }
+  }
+
+  createFilesFromFileOptions = async (settings: FileOptions[], lang: Language) => {    
     for(var index = 0; index < settings.length; index++) {
       const fileSetting = settings[index];
       if(!fileSetting.snippet || !fileSetting.name) {

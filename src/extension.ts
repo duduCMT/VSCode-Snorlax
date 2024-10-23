@@ -2,10 +2,12 @@ import * as vscode from 'vscode';
 
 import { reactNativeDisposebles } from './commands/ReactNative';
 import { rootDisposebles } from './commands/Root';
+import { typescriptDisposebles } from './commands/Typescript';
 
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(...reactNativeDisposebles(context));
+  context.subscriptions.push(...typescriptDisposebles(context));
   context.subscriptions.push(...rootDisposebles);
 }
 

@@ -1,0 +1,15 @@
+{
+	"snorlax-ts-utils": {
+		"prefix": "snorlax-ts-utils",
+		"scope": "typescript",
+		"body": [
+			"export class ${TM_FILENAME_BASE/^.+[\\/\\\\]+(.*)$/${1:/pascalcase}/} {",
+			"  static execute = () => {",
+			"    ",
+			"  };",
+			"}",
+			""
+		],
+		"description": "Create a Typescript utils class"
+	}
+}
